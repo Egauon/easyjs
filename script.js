@@ -7,9 +7,10 @@ var webconnected = false;
 async function fetchCellValue() {
     const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQdO0e7_vV7Vz_CGvvHSlq3LnbZzkfG9dRhK8X3cE3flxF7K7LRbkV2H4qyKWX0DPjrkuVaEUVceC-w/pubhtml';
 
+
     try {
     console.log("aight")
-        const response = await fetch(sheetUrl);
+        const response = await fetch(sheetUrl, {method: 'GET',headers: {'Cache-Control': 'no-cache'}});
         const html = await response.text();
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
@@ -18,7 +19,7 @@ async function fetchCellValue() {
         const cellValue = doc.querySelector('table tbody tr td').innerText;
         
        // servervalue = cellValue;
-       servervalue = 'ea76189f-a347-4107-a42f-54db99338f97'
+       servervalue = '5b1b367f-833e-443f-b3f7-55e23ee584cb'
         
         
         
@@ -51,12 +52,15 @@ async function fetchCellValue() {
             console.log('Script loaded and executed.');
             // Assuming your script defines a function called `myFunction`
             var peer = new Peer();
+             console.log('peer made');
             peer.on('open', function(id) {
             console.log(servervalue)
-            
+            console.log("1")
             
             function serverconnect(){
+              console.log("conn attempt made")
               serverconn = peer.connect(servervalue);
+              console.log("conn made")
               serverconn.on('open', function(){
               console.log("Server Connection Succeeded")
               
@@ -91,12 +95,13 @@ async function fetchCellValue() {
             }
             
             if(webvalue == ''){
+              console.log("2")
             	return serverconnect();
             }else{
             	webconn = peer.connect(webvalue);
               webconn.on('open', function(){
+                console.log("3")
                 console.log("Website Connection Succeeded!")
-                return true;
                 resolve()
               })
               webconn.on('error', function(){
@@ -124,10 +129,11 @@ async function fetchCellValue() {
 
 async function Ask(context, query, stayconnect) {
     stayconnect = stayconnect || false;
-
+  console.log("Ask1")
     if (!webconnected) {
         await fetchCellValue();
     }
+      console.log("Ask2")
 
     return new Promise((resolve, reject) => {
         webconn.send({ context: context, query: query });
@@ -136,7 +142,7 @@ async function Ask(context, query, stayconnect) {
         const onData = new Promise((res, rej) => {
             webconn.on("data", function (data) {
             console.log("HORRAY")
-            
+              console.log("Ask3")
                 if (data.context == context) {
                     if (!stayconnect) {
                         webconn.close();
@@ -149,6 +155,7 @@ async function Ask(context, query, stayconnect) {
             webconn.on("error", function () {
                 if (!stayconnect) {
                     webconn.close();
+                    console.log("Connection closed");
                 }
                 rej();
             });
@@ -158,4 +165,3 @@ async function Ask(context, query, stayconnect) {
         onData.then((data)=>resolve(data)).catch(reject);
     });
 }
-
