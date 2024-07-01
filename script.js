@@ -10,7 +10,7 @@ async function fetchCellValue() {
 
     try {
     console.log("aight")
-        const response = await fetch(sheetUrl, {method: 'GET',headers: {'Cache-Control': 'no-cache'}});
+        const response = await fetch(sheetUrl, { cache: 'no-store' });
         const html = await response.text();
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
@@ -18,8 +18,8 @@ async function fetchCellValue() {
         // Assuming the cell you want is in the first table, first row, first cell (A1)
         const cellValue = doc.querySelector('table tbody tr td').innerText;
         
-       // servervalue = cellValue;
-       servervalue = '5b1b367f-833e-443f-b3f7-55e23ee584cb'
+       servervalue = cellValue;
+       //servervalue = 'ae76defd-9fb7-482c-bd3b-370ddfe89319'
         
         
         
@@ -165,3 +165,4 @@ async function Ask(context, query, stayconnect) {
         onData.then((data)=>resolve(data)).catch(reject);
     });
 }
+
