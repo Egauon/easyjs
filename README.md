@@ -79,7 +79,7 @@ Respond("Login", function(data){
 
 # Extra Functions
 
-EasyJS adds a minimal amount of new functions to Javascript in order to maintain simplicity. The entire library can be consolidated into six functions, **however** only two are ever required. Those two functions are as follows:
+Here are some extra functions that aren't required for functionality of the library but are useful when building a website that can store important data.
 
 
 ## Save()
