@@ -1,11 +1,539 @@
-<h1>hello</h1>
-<form id="EasyJS"> <input type="hidden" name="Auth" value="f17e56ea0dea1007c49e9efb91"> </form>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&display=swap" rel="stylesheet">
 
-<script src="./script.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Slackey&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+
+
+
+
+
+
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg sticky-top" style="z-index:10000;">
+  <div class="container-fluid">
+    <!-- <a class="navbar-brand" href="#"><img src="https://i.ibb.co/stTQYt6/0b937d7e-0485-407e-a32e-8ab70401390c-sketchpad-1.png" style="position:absolute;top:20%;width:35vw;left:32vw;" alt="0b937d7e-0485-407e-a32e-8ab70401390c-sketchpad-1" border="0" ></a> -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./documentation.html">Documentation</a>
+        </li>
+
+    
+      </ul>
+    <ul class="navbar-nav ml-auto">
+      <li id="signinbutton" class="nav-item">
+        <a class="nav-link" href="./signin.html">Sign In</a>
+
+      </li>
+      <li id="usersettings" style="display:none;" class="nav-item dropdown">
+          <a id="username" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="./backends.html">My Sites</a></li>
+            <li><a class="dropdown-item" href="./accountsettings.html">Account Settings</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" onclick="localStorage.removeItem('localEmailCache', undefined);localStorage.removeItem('localPassCache', undefined);window.location.reload();" style="cursor: pointer;">Sign Out</a></li>
+          </ul>
+        </li>
+    </div>
+  </div>
+</nav>
+
+
+
+<script>
+function Get(name){
+	var previous = localStorage.getItem(name);
+  if(previous != undefined){
+    
+    return previous;
+  }else{
+  	return false;
+  }
+}
+
+
+
+var username = Get('localEmailCache');
+
+if(username){
+
+  document.getElementById("signinbutton").style.display = 'none';
+  document.getElementById("usersettings").style.display = 'block';
+  document.getElementById("username").innerHTML = username;
+}else{
+
+}
+
+</script>
+
+
+
+
+
+<div style="position:absolute;top:0%;left:0%;width:100%;height:100%;align-content:center;overflow:hidden;">
+
+<div id="titlescreen" style="position:absolute;top:0%;left:0%;width:100%;height:100%;align-content:center;transition: ease 1s;">
+
+<img src="./imgs/logo.png" style="position:absolute;top:20%;width:35vw;left:32vw;" alt="0b937d7e-0485-407e-a32e-8ab70401390c-sketchpad-1" border="0">
+
+
+
+<h2 style="position:absolute;top:40%;left:20%;width:60%;text-align:center;font-size:3vw;" class="roboto-bold">
+<span id="whatisit">Simplest</span> Backend Service
+</h2>
+</div>
+
+<div id="copyd" class="container scriptbutton" style="width:50%;background:white;box-shadow:10px 10px 0px rgba(0,0,0,.4); border:solid;border-width:5px;border-radius:20px;overflow:hidden;margin-top:30%;" onclick="copyToClipboard()" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">
+  
+  <div class="row antirow">
+    <div class="col-11" style="font-size:3vmin;padding:2%;">
+       <input type="text" id="textToCopy" value="<script src='https://github.com/Egauon/easyjs/blob/main/script.js'></script>" style="border:none;width:100%;" readonly>
+    </div>
+    <div class="col-1" style="background:rgb(150,150,150);padding:1%;">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" style="width:100%;height:100%;" class="bi bi-clipboard" viewBox="0 0 16 16" style="margin:auto;">
+  <path d="M4 1.5H3a2 2 0 0 0-2 2V14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V3.5a2 2 0 0 0-2-2h-1v1h1a1 1 0 0 1 1 1V14a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V3.5a1 1 0 0 1 1-1h1z"/>
+  <path d="M9.5 1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-3a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5zm-3-1A1.5 1.5 0 0 0 5 1.5v1A1.5 1.5 0 0 0 6.5 4h3A1.5 1.5 0 0 0 11 2.5v-1A1.5 1.5 0 0 0 9.5 0z"/>
+</svg>
+    </div>
+
+  </div>
+</div>
+
+
+</div>
+
+
+
+
+
+<!-- <div id="loginscreen" style="position:absolute;top:0%;left:100%;width:100%;height:100%;align-content:center;transition: ease 1s;">
+
+
+
+
+<div style="width:40vw;background:white;border:solid;border-width:5px;border-color:black;margin-left:20vw;border-radius:20px;padding:30px;box-shadow:10px 10px 0px rgba(0,0,0,.4);">
+  <h3 class="roboto-bold" style="width:100%;text-align:center;">
+    Log In
+  </h3>
+<form>
+  <div class="row mb-3">
+    <label for="inputEmail3" class="col-sm-2 col-form-label">Email</label>
+    <div class="col-sm-10">
+      <input type="email" class="form-control" id="inputEmail3">
+    </div>
+  </div>
+  <div class="row mb-3">
+    <label for="inputPassword3" class="col-sm-2 col-form-label">Password</label>
+    <div class="col-sm-10">
+      <input type="password" class="form-control" id="inputPassword3">
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-sm-10 offset-sm-2">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="gridCheck1">
+        <label class="form-check-label" for="gridCheck1">
+          Remember Me
+        </label>
+      </div>
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Sign in</button>
+</form>
+</div>
+</div> -->
+
+
+</div>
+
+
+
+
+
+
+
+</div>
+
+<div style="position:absolute;top:100%;left:0%;width:100%;height:auto;overflow:hidden;background:white;">
+
+
+
+<h2 class="roboto-bold" style="font-size:12vmin;text-align:center; margin:50px;">
+  
+    Two Simple Functions
+  
+</h2>
+
+<div class="container text-center ">
+  <div class="row">
+    <div class="col justify-content-center">
+      <div class="card roboto-bold justify-content-center">
+        <h4 style="font-size:8vmin;margin:20px;">Ask()</h4>
+                <span class="codelook source-code-pro"><h3><span style="color:orange;">Ask</span>(<span style="color:#3CAB61">context</span>, <span style="color:#F1FC80">query</span>)</h3></span>
+        <div class="card-body roboto-bold" style="color:rgba(0,0,0,.6);font-size:3vmin;">
+          Sends a message to the backend. This message includes a context and query parameter. It is an async function that returns a value upon receiving information from the backend. 
+        </div>
+      </div>
+    </div>
+    <div class="col justify-content-center">
+            <div class="card roboto-bold justify-content-center">
+        <h4 style="font-size:8vmin;margin:20px;">Respond()</h4>
+        <span class="codelook source-code-pro"><h3><span style="color:orange;">Respond</span>(<span style="color:#3CAB61">context</span>, <span style="color:#B468DD">funct</span>())</h3></span>
+        <div class="card-body roboto-bold" style="color:rgba(0,0,0,.6);font-size:3vmin;">
+          Responds the queries from the frontend. When a query is received, the Respond function compares the query's context to its own. If the contexts match, the funct() is carried out and a value is returned. 
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<div style="background:white;padding:10vmin;margin-top:10vmin;width:100%;">
+
+<h2 class="roboto-bold" style="font-size:12vmin;text-align:center; margin:50px;margin-top:10vmin;">
+  
+    One Simple Location
+  
+</h2>
+
+<div class="container text-center ">
+   <h3>All of the backend is handled within the browser, meaning...</h3>
+   <div class="card2">
+  <div class="row">
+
+    <div class="col justify-content-center">
+      <img class="iconthing" src="./imgs/lock.png" alt="0b937d7e-0485-407e-a32e-8ab70401390c-sketchpad-2" border="0" style="background: rgb(255,169,249);background: linear-gradient(90deg, rgba(255,169,249,1) 0%, rgba(124,41,152,1) 100%);">
+  
+    </div>
+    <div class="col justify-content-center">
+               <div class="col d-flex align-items-center" style="height: 200px;">
+      <p class="roboto-bold" style="font-size:3vmin;text-align:left;">
+         Your backend is secured using the same security techniques used as any modern browser. 
+      </p>
+      </div>
+         
+
+    </div>
+  </div>
+  </div>
+  <div class="card2">
+    <div class="row">
+    <div class="col justify-content-center">
+<img class="iconthing" src="./imgs/files.png" alt="0b937d7e-0485-407e-a32e-8ab70401390c-sketchpad-3" border="0" style="background: rgb(255,240,138);background: linear-gradient(90deg, rgba(255,240,138,1) 0%, rgba(255,185,62,1) 100%);">
+
+    </div>
+    <div class="col justify-content-center">
+            <div class="col d-flex align-items-center" style="height: 200px;">
+      <p class="roboto-bold" style="font-size:3vmin;text-align:left;">
+        No downloads of any kind are necessary. The fullstack development of your website can be done directly in the browser (no more messing with local files).
+      </p>
+      </div>
+    </div>
+  </div>
+  </div>
+<div class="card2">
+  <div class="row">
+
+    <div class="col justify-content-center">
+<img class="iconthing" src="./imgs/add.png" alt="0b937d7e-0485-407e-a32e-8ab70401390c-sketchpad-3" border="0" style="background: rgb(2,181,255);background: linear-gradient(90deg, rgba(2,181,255,1) 0%, rgba(41,43,152,1) 100%);">
+
+
+
+
+    </div>
+      <div class="col d-flex align-items-center" style="height: 200px;">
+      <p class="roboto-bold" style="font-size:3vmin;text-align:left;">
+        You can add a backend to static websites such as GitHub Pages or Wix completely for free.
+      </p>
+      </div>
+    </div>
+    <div class="col justify-content-center">
+
+    </div>
+  </div>
+  </div>
+</div>
+
+</div>
+
+</div>
+
+
+
 <script>
 
-Ask('test', "hi").then(function(data){
-alert("aight")
-    })
-  
+        function copyToClipboard() {
+            // Get the text field
+            var copyText = document.getElementById("textToCopy");
+
+            // Select the text field
+            copyText.select();
+            copyText.setSelectionRange(0, 99999); // For mobile devices
+
+            // Copy the text inside the text field
+            document.execCommand("copy");
+
+        }
+
 </script>
+
+
+
+<style>
+
+
+.card2{
+
+  border:none;
+  border-width:3px;
+  padding:10px;
+
+}
+
+.scriptbutton{
+  transform: scale(1);
+  transition: .3s ease;
+}
+.scriptbutton:hover{
+  transform: scale(1.05);
+  cursor: pointer;
+}
+
+
+.row{
+  margin-top:60px !important;
+}
+
+.antirow{
+  margin-top:0px !important;
+}
+
+.iconthing{
+
+  width:30vmin;
+  font-size:3vmin;
+  border:solid;
+  border-width:5px;
+  border-color:black;
+  border-radius:30px;
+
+}
+
+.iconlists {
+  display: flex;
+  align-items: center;
+  width: 150px;
+  height: 150px;
+  border: 1px solid black;
+}
+
+
+.codelook{
+  background:#15334F;
+  padding:10px;
+  border-radius:10px;
+  color:#9DBCDA;
+}
+
+
+.card{
+  border-width: 5px !important;
+  border-color:black !important;
+  box-shadow: 10px 10px 0px rgba(0,0,0,.4);
+  margin:20px;
+  padding:10px;
+  transform: scale(1);
+  transition: ease .2s;
+}
+.card:hover{
+  transform: scale(1.05);
+    box-shadow: 10px 10px 0px orange;
+}
+
+
+.img{
+  border:none;
+}
+
+.source-code-pro {
+  font-family: "Source Code Pro", monospace;
+  font-optical-sizing: auto;
+  font-weight: <weight>;
+  font-style: normal;
+}
+
+.slackey-regular {
+  font-family: "Slackey", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.roboto-bold {
+  font-family: "Roboto", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+body {
+  overflow-x:hidden;
+  background:white;
+  --s: 25vmin;
+  --p: calc(var(--s) / 2);
+  --c1: #FFC19B;
+  --c2: #FFEC9F;
+  --c3: white;
+  --bg: var(--c3);
+  --d: 24000ms;
+  --e: cubic-bezier(0.76, 0, 0.24, 1);
+  
+  background-color: var(--bg);
+  background-image:
+    linear-gradient(45deg, var(--c1) 25%, transparent 25%),
+    linear-gradient(-45deg, var(--c1) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, var(--c2) 75%),
+    linear-gradient(-45deg, transparent 75%, var(--c2) 75%);
+  background-size: var(--s) var(--s);
+  background-position: 
+    calc(var(--p) *  1) calc(var(--p) *  0), 
+    calc(var(--p) * -1) calc(var(--p) *  1), 
+    calc(var(--p) *  1) calc(var(--p) * -1), 
+    calc(var(--p) * -1) calc(var(--p) *  0);
+  animation: 
+    color var(--d) var(--e) infinite,
+    position var(--d) var(--e) infinite;
+}
+
+@keyframes color {
+  0%, 25% {
+    --bg: var(--c3);
+  }
+  26%, 50% {
+    --bg: var(--c1);
+  }
+  51%, 75% {
+    --bg: var(--c3);
+  }
+  76%, 100% {
+    --bg: var(--c2);
+  }
+}
+
+@keyframes position {
+  0% {
+    background-position: 
+      calc(var(--p) *  1) calc(var(--p) *  0), 
+      calc(var(--p) * -1) calc(var(--p) *  1), 
+      calc(var(--p) *  1) calc(var(--p) * -1), 
+      calc(var(--p) * -1) calc(var(--p) *  0);
+  }
+  25% {
+    background-position: 
+      calc(var(--p) *  1) calc(var(--p) *  4), 
+      calc(var(--p) * -1) calc(var(--p) *  5), 
+      calc(var(--p) *  1) calc(var(--p) *  3), 
+      calc(var(--p) * -1) calc(var(--p) *  4);
+  }
+  50% {
+    background-position: 
+      calc(var(--p) *  3) calc(var(--p) * 8), 
+      calc(var(--p) * -3) calc(var(--p) * 9), 
+      calc(var(--p) *  2) calc(var(--p) * 7), 
+      calc(var(--p) * -2) calc(var(--p) * 8);
+  }
+  75% {
+    background-position: 
+      calc(var(--p) *  3) calc(var(--p) * 12), 
+      calc(var(--p) * -3) calc(var(--p) * 13), 
+      calc(var(--p) *  2) calc(var(--p) * 11), 
+      calc(var(--p) * -2) calc(var(--p) * 12);
+  }
+  100% {    
+    background-position: 
+      calc(var(--p) *  5) calc(var(--p) * 16), 
+      calc(var(--p) * -5) calc(var(--p) * 17), 
+      calc(var(--p) *  5) calc(var(--p) * 15), 
+      calc(var(--p) * -5) calc(var(--p) * 16);
+  }
+}
+
+@media (prefers-reduced-motion) {
+  body {
+    animation: none;
+  }
+}
+
+
+
+
+
+.changa-one-regular-italic {
+  font-family: "Changa One", sans-serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.changa-one-regular {
+  font-family: "Changa One", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+</style>
+
+
+
+
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+    var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+      return new bootstrap.Popover(popoverTriggerEl)
+    })
+  });
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,310 @@
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&amp;display=swap" rel="stylesheet">
+
+<link href="https://fonts.googleapis.com/css2?family=Slackey&amp;display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&amp;display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&amp;display=swap" rel="stylesheet">
+<script src="./lib/script.js"></script>
+
+
+
+
+
+</head>
+<body>
+  
+
+
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg sticky-top" style="z-index:10000;">
+  <div class="container-fluid">
+    <!-- <a class="navbar-brand" href="#"><img src="https://i.ibb.co/stTQYt6/0b937d7e-0485-407e-a32e-8ab70401390c-sketchpad-1.png" style="position:absolute;top:20%;width:35vw;left:32vw;" alt="0b937d7e-0485-407e-a32e-8ab70401390c-sketchpad-1" border="0" ></a> -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./documentation.html">Documentation</a>
+        </li>
+
+    
+      </ul>
+    <ul class="navbar-nav ml-auto">
+      <li id="signinbutton" class="nav-item">
+        <a class="nav-link" href="./signin.html">Sign In</a>
+
+      </li>
+      <li id="usersettings" style="display:none;" class="nav-item dropdown">
+          <a id="username" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="./backends.html">My Sites</a></li>
+            <li><a class="dropdown-item" href="./accountsettings.html">Account Settings</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" onclick="localStorage.removeItem('localEmailCache', undefined);localStorage.removeItem('localPassCache', undefined);window.location.reload();" style="cursor: pointer;">Sign Out</a></li>
+          </ul>
+        </li>
+    </div>
+  </div>
+</nav>
+
+<script>
+function Get(name){
+	var previous = localStorage.getItem(name);
+  if(previous != undefined){
+    
+    return previous;
+  }else{
+  	return false;
+  }
+}
+
+
+
+var username = Get('localEmailCache');
+
+if(username){
+
+  document.getElementById("signinbutton").style.display = 'none';
+  document.getElementById("usersettings").style.display = 'block';
+  document.getElementById("username").innerHTML = username;
+}else{
+
+}
+
+</script>
+
+
+
+
+<div id="failed" class="alert alert-danger" role="alert" style="display:none;">
+  Website could not be reached. Ensure CORS is not blocking Fetch command and that URL is valid. 
+</div>
+
+<div id="failed2" class="alert alert-danger" role="alert" style="display:none;">
+  Could not find token on website. Wait and try again or ensure that the correct token is visible. 
+</div>
+
+
+
+
+
+
+  <h2 class="roboto-bold" style="font-size:12vmin;text-align:center; margin:50px;">
+  
+    Authentication
+
+</h2>
+
+<h3 style="width:100%;font-size:4vmin;" class="roboto-bold">
+Copy Website URL Here:
+</h3>
+
+<input id="websitename" type="text" class="card" style="margin:auto;width:50%;height:10%;text-align:center;font-size:3vmin;">
+
+
+<div id="genAuth" class="btn card" style="width:20%;background:rgb(0,255,0);margin:auto;margin-top:30px;font-size:3vmin;color:black;transition: 1s ease;" onclick="genAuth()">
+Generate Token
+
+</div>
+
+
+<div id="confirmAuth" class="btn card" style="width:20%;background:rgb(0,0,255);margin:auto;margin-top:30px;font-size:3vmin;color:white;transition: 1s ease;visibility:hidden;" onclick="checkAuth()">
+Check Website
+
+</div>
+
+</body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+var legit = 3;
+function genAuth(){
+
+if(legit != 0){
+document.getElementById("failed").style.display = "none"
+document.getElementById("genAuth").innerHTML = '<div id="spinner" style="display:block;" class="spinner-border" role="status"></div>';
+
+legit = 0;
+
+ 
+
+var timeoutlog = setTimeout(function(){
+
+if(legit != 1){
+  document.getElementById("genAuth").innerHTML = 'Generate Token'
+  document.getElementById("failed").style.display = "block"
+  legit = 2;
+}
+
+},7000)
+
+if(!document.getElementById("websitename").value.includes("http")){
+  clearTimeout(timeoutlog);
+  legit = 2;
+  document.getElementById("genAuth").innerHTML = 'Generate Token'
+  document.getElementById("failed").style.display = "block"
+  return false;
+}
+
+
+fetch(document.getElementById("websitename").value, { cache: 'no-store' }).then(function(data){
+
+
+if(data.status == 200){
+  legit = 1;
+  clearTimeout(timeoutlog);
+  Ask('GetAuthToken', {email: localStorage.getItem('localEmailCache'), password: localStorage.getItem('localPassCache'), website: document.getElementById("websitename").value}).then(function(data){
+    if(data != false){
+    document.getElementById("genAuth").style.width = "50%"
+    document.getElementById("genAuth").style.background = "black"
+    document.getElementById("genAuth").style.color = "white"
+    document.getElementById("genAuth").onclick = ""
+    document.getElementById("genAuth").innerHTML = '<textarea id="authtoken" spellcheck="false" class="roboto-bold" style="background:none;color:white;border:none;resize:none;width:100%;height:100%;font-size:4vmin;" onclick="this.select()"></textarea>'
+    document.getElementById("authtoken").value = '<form id="EasyJS"> <input type="hidden" name="Auth" value="' + data + '"> </form>'
+    document.getElementById("confirmAuth").style.visibility = "visible"
+
+} else{
+
+  clearTimeout(timeoutlog);
+  legit = 2;
+  document.getElementById("genAuth").innerHTML = 'Generate Token'
+  document.getElementById("failed").style.display = "block"
+}
+
+  })
+}else{
+  clearTimeout(timeoutlog);
+  legit = 2;
+  document.getElementById("genAuth").innerHTML = 'Generate Token'
+  document.getElementById("failed").style.display = "block"
+}
+
+
+})
+
+
+}
+}
+
+
+
+
+</script>
+
+
+<script>
+
+
+
+
+
+var legitt = 3;
+function checkAuth(){
+if(legitt != 0){
+document.getElementById("failed2").style.display = "none"
+document.getElementById("confirmAuth").innerHTML = '<div id="spinner" style="display:block;" class="spinner-border" role="status"></div>';
+
+legitt = 0;
+
+ 
+
+var timeoutlog = setTimeout(function(){
+
+if(legitt != 1){
+  document.getElementById("confirmAuth").innerHTML = 'Confirm Token'
+  document.getElementById("failed2").style.display = "block"
+  legitt = 2;
+}
+
+},12000)
+
+
+Ask('AddWebsite', {email: localStorage.getItem('localEmailCache'), password: localStorage.getItem('localPassCache'), website: document.getElementById("websitename").value}).then(function(data){
+
+  if(data){
+    clearTimeout(timeoutlog);
+    window.location.href = "./backends.html"
+  }else{
+    document.getElementById("confirmAuth").innerHTML = 'Confirm Token'
+    document.getElementById("failed2").style.display = "block"
+  }
+})
+
+
+
+}
+}
+</script>
+
+<style>
+
+
+
+#genAuth{
+transform: scale(1)
+transition: .2s ease;
+}
+
+#genAuth:hover{
+  transform: scale(1.05)
+}
+
+#confirmAuth{
+transform: scale(1)
+transition: .2s ease;
+}
+
+#confirmAuth:hover{
+  transform: scale(1.05)
+}
+
+.card{
+  border-width: 5px !important;
+  border-color:black !important;
+  box-shadow: 10px 10px 0px rgba(0,0,0,.4);
+  margin:20px;
+  padding:30px;
+  transform: scale(1);
+  transition: ease .2s;
+}
+
+
+
+
+body{
+  text-align:center;
+}
+</style>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeMirror Example</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/theme/darcula.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Changa+One:ital@0;1&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Slackey&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+
+<script src="./lib/script.js"></script>
+<script src="./lib/host.js"></script>
+
+
+    <style>
+        .CodeMirror {
+            width: 100%;
+            height: 100%;
+        }
+
+        #codecont {
+            position:absolute;
+            width: 50%;
+            left:0%;
+            background:orange;
+            height: 93%;
+        }
+
+        .card {
+            border-width: 10px !important;
+            border-color: black !important;
+            box-shadow: 10px 10px 0px rgba(0, 255, 0, .4);
+            margin: 20px;
+            padding: 10px;
+            transform: scale(1);
+            transition: ease .2s;
+        }
+
+        .card:hover {
+            transform: scale(1.05) !important;
+            box-shadow: 10px 10px 0px orange !important;
+        }
+
+        .cardnew {
+            box-shadow: 10px 10px 0px rgba(255, 0, 0, .4);
+            background: rgba(255, 0, 0, .2)
+        }
+
+        .card:active {
+            transform: scale(.9) !important;
+            box-shadow: 0px 0px 0px orange !important;
+        }
+
+
+       
+        .navbar-nav-center {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+ 
+
+    </style>
+</head>
+<div id="saved" class="alert alert-success" role="alert" style="display:none;">
+    Saved!
+</div>
+<nav class="navbar navbar-dark bg-dark navbar-expand-lg sticky-top" style="z-index:10000;">
+  <div class="container-fluid">
+    <!-- <a class="navbar-brand" href="#"><img src="https://i.ibb.co/stTQYt6/0b937d7e-0485-407e-a32e-8ab70401390c-sketchpad-1.png" style="position:absolute;top:20%;width:35vw;left:32vw;" alt="0b937d7e-0485-407e-a32e-8ab70401390c-sketchpad-1" border="0" ></a> -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./documentation.html">Documentation</a>
+        </li>
+                <li class="nav-item">
+          <a class="nav-link active" aria-current="page" onclick="savecode()" style="cursor: pointer">Save</a>
+        </li>
+                <div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+            <ul class="navbar-nav navbar-nav-center">
+                <li class="nav-item">
+                    <a id="websitename" class="nav-link"></a>
+                </li>
+            </ul>
+        </div>
+
+
+    
+      </ul>
+    <ul class="navbar-nav ml-auto">
+      <li id="signinbutton" class="nav-item">
+        <a class="nav-link" href="./signin.html">Sign In</a>
+
+      </li>
+      <li id="usersettings" style="display:none;" class="nav-item dropdown">
+          <a id="username" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Dropdown
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="./backends.html">My Sites</a></li>
+            <li><a class="dropdown-item" href="./accountsettings.html">Account Settings</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" onclick="localStorage.removeItem('localEmailCache', undefined);localStorage.removeItem('localPassCache', undefined);window.location.reload();" style="cursor: pointer;">Sign Out</a></li>
+          </ul>
+        </li>
+    </div>
+  </div>
+</nav>
+
+
+
+
+<script>
+
+const urlParams = new URLSearchParams(window.location.search);
+const site = urlParams.get('site');
+
+document.getElementById("websitename").innerHTML = site;
+
+
+
+
+
+function Get(name){
+	var previous = localStorage.getItem(name);
+  if(previous != undefined){
+    
+    return previous;
+  }else{
+  	return false;
+  }
+}
+
+
+
+var username = Get('localEmailCache');
+
+if(username){
+
+  document.getElementById("signinbutton").style.display = 'none';
+  document.getElementById("usersettings").style.display = 'block';
+  document.getElementById("username").innerHTML = username;
+}else{
+
+}
+
+</script>
+<body>
+
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <div id="codecont">
+ 
+    <textarea id="code" name="code">function myScript() {
+    return 100;
+}
+    </textarea>
+</div>
+    </div>
+    <div class="col">
+      <div id="infocont" style="position: absolute; left: 50%; width: 50%; height: 94%; align-content: center;overflow:hidden;">
+
+<h3 id="sitename" style="position:absolute;top:0%;left:0%;width:200%;font-size:5vmin;overflow:hidden;">
+
+</h3>
+
+
+
+    <div class="card" id="togglebutton" style="position: absolute; top: 10%; left: 25%; width: 50%; height: 40%; margin: auto;" onclick="toggleServer()">
+        <svg id="playbutton" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%;" fill="currentColor" class="bi bi-play" viewBox="0 0 16 16">
+            <path d="M10.804 8 5 4.633v6.734zm.792-.696a.802.802 0 0 1 0 1.392l-6.363 3.692C4.713 12.69 4 12.345 4 11.692V4.308c0-.653.713-.998 1.233-.696z"></path>
+        </svg>
+
+        <svg id="stopbutton" xmlns="http://www.w3.org/2000/svg" style="width: 100%; height: 100%; display: none;" width="16" height="16" fill="currentColor" class="bi bi-stop" viewBox="0 0 16 16">
+            <path d="M3.5 5A1.5 1.5 0 0 1 5 3.5h6A1.5 1.5 0 0 1 12.5 5v6a1.5 1.5 0 0 1-1.5 1.5H5A1.5 1.5 0 0 1 3.5 11zM5 4.5a.5.5 0 0 0-.5.5v6a.5.5 0 0 0 .5.5h6a.5.5 0 0 0 .5-.5V5a.5.5 0 0 0-.5-.5z"></path>
+        </svg>
+    </div>
+
+    <div id="console" style="position: absolute; top: 60%; width: 90%; left: 5%; height: 32.5%; background: rgba(0, 0, 0, .1); padding: 1%;overflow:scroll;"></div>
+</div>
+    </div>
+
+  </div>
+</div>
+
+
+
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" integrity="sha512-2rNj2KJ+D8s1ceNasTIex6z4HWyOnEYLVC3FigGOmyQCZc2eBXKgOxQmo3oKLHyfcj53uz4QMsRCWNbLd32Q1g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-BBtl+eGJRgqQAUMxJ7pMwbEyER4l1g+O15P+16Ep7Q9Q+zqX6gSbd85u4mG4QzX+" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/codemirror.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.5/mode/javascript/javascript.min.js"></script>
+<script>
+    var serveron = false;
+var currentid = '';
+    var editor = CodeMirror.fromTextArea(document.getElementById("code"), {
+        lineNumbers: true,
+        mode: "javascript",
+        theme: 'darcula'
+    });
+
+
+function savecode(){
+    localStorage.setItem(site, editor.getValue())
+    document.getElementById("saved").style.display = "block";
+    setTimeout(function(){
+        document.getElementById("saved").style.display = "none";
+    },1000)
+}
+
+function getcode(){
+editor.setValue(localStorage.getItem(site));
+
+}
+
+window.onload = getcode();
+
+
+
+
+function setusercode(){
+     date = new Date();
+     datestring = "[" + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() + "] ";
+                document.getElementById("console").innerHTML += '<div style="width:100%; margin:1%; border-bottom:solid; border-color:rgba(0,0,0,.1)">' + datestring + "Server Started" + '</div>';
+            document.getElementById("playbutton").style.display = "none";
+            document.getElementById("stopbutton").style.display = "block";
+            document.getElementById("togglebutton").classList.add("cardnew");
+                document.getElementById("console").scrollTo(0,document.getElementById("console").scrollHeight)
+
+            var userscript = document.createElement("script");
+            userscript.innerHTML = editor.getValue();
+            document.getElementById("userscript").appendChild(userscript)
+}
+
+    function toggleServer() {
+         date = new Date();
+         datestring = "[" + date.getHours() + ":" + date.getMinutes() + ":" + date.getSeconds() + "] ";
+
+        if (serveron) {
+            serveron = false;
+            document.getElementById("userscript").innerHTML = ""
+            document.getElementById("playbutton").style.display = "block";
+            document.getElementById("stopbutton").style.display = "none";
+            document.getElementById("togglebutton").classList.remove("cardnew");
+            document.getElementById("console").innerHTML += '<div style="width:100%; margin:1%; border-bottom:solid; border-color:rgba(0,0,0,.1)">' + datestring + "Server Ended" + '</div>';
+                document.getElementById("console").scrollTo(0,document.getElementById("console").scrollHeight)
+        } else {
+            serveron = true;
+            document.getElementById("console").innerHTML = "";
+            if(EasyJS["id"] == currentid){
+                setusercode();
+            }else{
+              currentid = EasyJS["id"];
+                 document.getElementById("console").innerHTML += '<div style="width:100%; margin:1%; border-bottom:solid; border-color:rgba(0,0,0,.1)">' + datestring + "Updating Server Location..." + '</div>';
+                 console.log("waiting")
+                Ask('SetWebsiteId', {email: localStorage.getItem('localEmailCache'), password: localStorage.getItem('localPassCache'), website: document.getElementById("websitename").innerHTML, id: EasyJS["id"]}).then(function(data){
+                    
+                    if(data){
+                        setusercode();
+                    }else{
+                        document.getElementById("console").innerHTML += '<div style="width:100%; margin:1%; border-bottom:solid; border-color:rgba(0,0,0,.1)">' + datestring + "Server Failed To Connect" + '</div>';
+                        toggleServer()
+                    }
+                        
+
+                })
+            
+
+        }
+    }
+    }
+</script>
+
+<span id="userscript">
+</span>
+</body>
+</html>
