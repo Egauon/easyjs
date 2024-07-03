@@ -1,6 +1,6 @@
 # Getting Started
 
-To begin using the EasyJS library, you must first create an account. After creating an account it is time to link your website.
+To begin using the EasyJS library, you must first create an account. After creating an account, it is time to link your website.
 
 
 ## Authentication
