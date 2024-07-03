@@ -1,91 +1,171 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
+
 <head>
-  <meta charset="UTF-8">
+  <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Load Markdown Example</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <title>Welcome file</title>
+  <link rel="stylesheet" href="https://stackedit.io/style.css" />
 </head>
-<body>
-  <nav class="navbar navbar-dark bg-dark navbar-expand-lg sticky-top" style="z-index:10000;">
-    <div class="container-fluid">
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./documentation.html">Documentation</a>
-          </li>
-        </ul>
-        <ul class="navbar-nav ml-auto">
-          <li id="signinbutton" class="nav-item">
-            <a class="nav-link" href="./signin.html">Sign In</a>
-          </li>
-          <li id="usersettings" style="display:none;" class="nav-item dropdown">
-            <a id="username" class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              Dropdown
-            </a>
-            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <li><a class="dropdown-item" href="./backends.html">My Sites</a></li>
-              <li><a class="dropdown-item" href="./accountsettings.html">Account Settings</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" onclick="localStorage.removeItem('localEmailCache');localStorage.removeItem('localPassCache');window.location.reload();" style="cursor: pointer;">Sign Out</a></li>
-            </ul>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
 
-  <div style="position:absolute;top:100%;left:0%;width:100%;height:auto;overflow:hidden;background:white;">
-    <button type="button" class="btn btn-lg btn-danger" data-bs-toggle="popover" data-bs-title="Popover title" data-bs-content="And here's some amazing content. It's very engaging. Right?">Click to toggle popover</button>
-  </div>
+<body class="stackedit">
+  <div class="stackedit__html"><h1 id="getting-started">Getting Started</h1>
+<p>To begin using the EasyJS library, you must first create an account. After creating an account, it is time to link your website. First start off by linking the library’s script.js into your project. Then it’s time for authentication.</p>
+<h2 id="authentication">Authentication</h2>
+<p>While EasyJS prides itself on being a simple backend library, the authentication process can seem daunting (it’s not too bad though trust me). The authentication process can be explained in a few steps:</p>
+<ul>
+<li>
+<h3 id="navigate-to-my-sites">Navigate to “My Sites”</h3>
+<ul>
+<li>Under the account dropdown menu, there should be a button titled “My Sites”. Click on it.</li>
+</ul>
+</li>
+<li>
+<h3 id="click-the-add-new-site-button">Click the add new site button</h3>
+<ul>
+<li>In the My Sites page there should be a green button with a plus symbol that takes you to the authentication page.</li>
+</ul>
+</li>
+<li>
+<h3 id="get-your-parentest-of-directories">Get your “parentest” of directories</h3>
+<ul>
+<li>Copy and paste your website’s URL into the provided input field and generate token.</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong><em>NOTE:</em></strong>  EasyJS only needs to verify only one html document in order to verify the entire website. To make this possible, however, you must use the most parent directory you have access to that also contains an HTML file.<br>
+<strong>For example:</strong> If you are using a Github pages website, the URL you want to use is the landing page: <a href="https://example.github.io/repo/">https://example.github.io/repo/</a>, rather than <a href="https://example.github.io/repo/account/login">https://example.github.io/repo/account/login</a>.</p>
+</blockquote>
+<ul>
+<li>
+<h3 id="copy-generated-token-into-the-main-html-file-for-the-provided-url">Copy generated token into the main HTML file for the provided URL</h3>
+<ul>
+<li>The token can be inserted anywhere within the main HTML file for your site.</li>
+</ul>
+</li>
+<li>
+<h3 id="check-website">Check Website</h3>
+<ul>
+<li>Wait for your website to publish file changes and then click the <strong>Check Website</strong> button.</li>
+</ul>
+</li>
+</ul>
+<p>And you’re done! Just like that!</p>
+<p>You can now begin editing the backend by clicking on the <strong>EDIT</strong> button in the My Sites page.</p>
+<h1 id="main-functions">Main Functions</h1>
+<p>EasyJS adds a minimal amount of new functions to Javascript in order to maintain simplicity. The entire library can be consolidated into four functions, <strong>however</strong> only two are ever required. Those two functions are as follows:</p>
+<h2 id="ask">Ask()</h2>
+<pre><code>Ask(Context, Query)
+</code></pre>
+<p>The Ask function is used by the front end and can be thought of as a way of asking for permission to view/change/inform the backend.</p>
+<p>There are two parameters for the Ask function.</p>
+<ul>
+<li>Context
+<ul>
+<li>Tells the backend what type of information it is receiving.</li>
+</ul>
+</li>
+<li>Query
+<ul>
+<li>Represents the actual information.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Example:</strong></p>
+<p><code>Ask("Login", {username: "bob", password: 12345})</code></p>
+<h2 id="respond">Respond()</h2>
+<pre><code>Respond(Context, Function(data))
+</code></pre>
+<p>The Respond function is used by the backend and can be thought of a method to answer the questions asked by the front end.</p>
+<p>Like the Ask function, there are two parameters for the Respond function.</p>
+<ul>
+<li>Context
+<ul>
+<li>Determines which questions the Respond function will answer.</li>
+</ul>
+</li>
+<li>Function
+<ul>
+<li>Provides the process in which questions are answered.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code>Respond("Login", function(data){
+	if(data.username == "bob" &amp;&amp; data.password == 12345){
+		return true;
+	}else{
+		return false;
+	}
+})
+</code></pre>
+<h1 id="extra-functions">Extra Functions</h1>
+<p>Here are some extra functions that aren’t required for functionality of the backend but are useful when building a website that can store important data.</p>
+<h2 id="save">Save()</h2>
+<pre><code>Save(Name, Value)
+</code></pre>
+<p>The Save function belongs to the backend and is used to retain vital information across server starts/stops.</p>
+<p>There are two parameters for the Save function.</p>
+<ul>
+<li>Name
+<ul>
+<li>A chosen name to give the value being saved.</li>
+</ul>
+</li>
+<li>Value
+<ul>
+<li>The value in which the Save function will save.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Example:</strong></p>
+<pre><code>var userArray = ["bob", "adrien", "josie"]
 
-  <div id="markdown-content" class="container mt-5"></div>
+Save("users", userArray)
+</code></pre>
+<p>This creates a save called “users” that is able to be retrieved using the Get function. It is wise to call the Save function when any important data has been collected, such as a user being created or account settings being updated.</p>
+<blockquote>
+<p>⚠️ <strong>This data is saved using localStorage</strong>: It is very important to not clear the cache of EasyJS’ website if there is important information being saved.</p>
+</blockquote>
+<h2 id="get">Get()</h2>
+<pre><code>Get(Name, DefaultType)
+</code></pre>
+<p>The Get function belongs to the backend and is used to retain vital information across server starts/stops.</p>
+<p>There are two parameters for the Get function.</p>
+<ul>
+<li>Name
+<ul>
+<li>A name that corresponds to a saved name.</li>
+</ul>
+</li>
+<li>DefaultType
+<ul>
+<li>The value in which the Get function should return if no previous data was saved.</li>
+</ul>
+</li>
+</ul>
+<p><strong>Example:</strong></p>
+<p><code>var userArray = Get("users", [])</code></p>
+<p>This creates a variable called “userArray” that defaults to an empty array, however if previous data was saved under the name “users”, it replaces the empty array with the previous data.</p>
+<p><strong>Used with the Save function it would look like this:</strong></p>
+<pre><code>var userArray = Get("users", []);
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+userArray.push("joey");
 
-  <script>
-    function Get(name) {
-      var previous = localStorage.getItem(name);
-      return previous ? previous : false;
-    }
-
-    var username = Get('localEmailCache');
-    if (username) {
-      document.getElementById("signinbutton").style.display = 'none';
-      document.getElementById("usersettings").style.display = 'block';
-      document.getElementById("username").innerHTML = username;
-    }
-
-    // Initialize popovers
-    document.addEventListener('DOMContentLoaded', function () {
-      var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
-      var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-        return new bootstrap.Popover(popoverTriggerEl)
-      });
-    });
-
-    // Function to fetch and display the markdown file
-    async function loadMarkdownFile(url) {
-      try {
-        const response = await fetch(url);
-        const markdown = await response.text();
-        const htmlContent = marked(markdown);
-        document.getElementById('markdown-content').innerHTML = htmlContent;
-      } catch (error) {
-        console.error('Error fetching the markdown file:', error);
-      }
-    }
-
-    // Call the function with the path to your markdown file
-    loadMarkdownFile('./README.md');
-  </script>
+Save("users", userArray);
+</code></pre>
+<h1 id="using-the-editor">Using the Editor</h1>
+<p>The EasyJS editor is an in-browser component that must be running in order for the backend to function. It is opened by clicking <strong>EDIT</strong> on a backend in the My Sites page.</p>
+<h2 id="left-side-backend-code">Left Side (Backend Code)</h2>
+<p>The left side of the editor contains the code for your backend. It is where you will define all of your Respond() functions and any setup/teardown that may be required. Because it is already on the EasyJS website, there is no need to link the library.</p>
+<p>There is a <strong>Save</strong> button on the navbar above the editor to save your backend across sessions.</p>
+<h2 id="right-side-runtime">Right Side (Runtime)</h2>
+<p>The right side of the editor contains the start button and the console. Once the start button is pressed, the console will begin reading outputs from the server state. Once up and running, the console will also display each Ask query (<strong>bolded</strong>) and Respond answer (regular) along with a timestamp. To end the backend at any time, press the stop button and close the editor.</p>
+<blockquote>
+<p><strong><em>NOTE:</em></strong>  Your website will be unable to perform backend calls while the backend is stopped. This can make functionalities like updates and logins unavailable. It is important to have a way for users to know that the backend is not available.</p>
+</blockquote>
+</div>
 </body>
+
 </html>
