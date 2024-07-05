@@ -18,9 +18,10 @@ async function fetchCellValue() {
         const doc = parser.parseFromString(html, 'text/html');
 
         // Assuming the cell you want is in the first table, first row, first cell (A1)
-	
+	console.log("AIaaaGHT");
         const cellValue = doc.querySelector('table tbody tr td').innerText;
-        console.log(cellValue)
+	    console.log("AIaaaaaGHT");
+        console.log("HEY: " + cellValue)
        servervalue = cellValue;
        //servervalue = 'ae76defd-9fb7-482c-bd3b-370ddfe89319'
         
