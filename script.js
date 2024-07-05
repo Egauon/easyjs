@@ -11,14 +11,16 @@ async function fetchCellValue() {
 
     try {
     console.log("aight")
+	
         const response = await fetch(sheetUrl, { cache: 'no-store' });
         const html = await response.text();
         const parser = new DOMParser();
         const doc = parser.parseFromString(html, 'text/html');
 
         // Assuming the cell you want is in the first table, first row, first cell (A1)
+	
         const cellValue = doc.querySelector('table tbody tr td').innerText;
-        
+        console.log(cellValue)
        servervalue = cellValue;
        //servervalue = 'ae76defd-9fb7-482c-bd3b-370ddfe89319'
         
