@@ -5,7 +5,8 @@ var webconnected = false;
         
         console.log(window.location.href)
 async function fetchCellValue() {
-    const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQdO0e7_vV7Vz_CGvvHSlq3LnbZzkfG9dRhK8X3cE3flxF7K7LRbkV2H4qyKWX0DPjrkuVaEUVceC-w/pubhtml';
+	
+    const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQdO0e7_vV7Vz_CGvvHSlq3LnbZzkfG9dRhK8X3cE3flxF7K7LRbkV2H4qyKWX0DPjrkuVaEUVceC-w/pubhtml?' + Date.now();
 
 
     try {
