@@ -93,8 +93,10 @@ if(username){
 
 </script>
   <div class="stackedit__html"><h1 id="getting-started">Getting Started</h1>
+	  <br>
 <p>To begin using the EasyJS library, you must first create an account. After creating an account, it is time to link your website. First start off by linking the library’s script.js into your project. Then it’s time for authentication.</p>
 <h2 id="authentication">Authentication</h2>
+	   <br>
 <p>While EasyJS prides itself on being a simple backend library, the authentication process can seem daunting (it’s not too bad though trust me). The authentication process can be explained in a few steps:</p>
 <ul>
 <li>
@@ -137,8 +139,10 @@ if(username){
 <p>And you’re done! Just like that!</p>
 <p>You can now begin editing the backend by clicking on the <strong>EDIT</strong> button in the My Sites page.</p>
 <h1 id="main-functions">Main Functions</h1>
+	   <br>
 <p>EasyJS adds a minimal amount of new functions to Javascript in order to maintain simplicity. The entire library can be consolidated into four functions, <strong>however</strong> only two are ever required. Those two functions are as follows:</p>
 <h2 id="ask">Ask()</h2>
+	   <br>
 <pre><code>Ask(Context, Query)
 </code></pre>
 <p>The Ask function is used by the front end and can be thought of as a way of asking for permission to view/change/inform the backend.</p>
@@ -157,7 +161,8 @@ if(username){
 </ul>
 <p><strong>Example:</strong></p>
 <p><code>Ask("Login", {username: "bob", password: 12345})</code></p>
-<h2 id="respond">Respond()</h2>
+<h2 id="respond">Respond()</h2> 
+	   <br>
 <pre><code>Respond(Context, Function(data))
 </code></pre>
 <p>The Respond function is used by the backend and can be thought of a method to answer the questions asked by the front end.</p>
@@ -184,8 +189,10 @@ if(username){
 })
 </code></pre>
 <h1 id="extra-functions">Extra Functions</h1>
+	   <br>
 <p>Here are some extra functions that aren’t required for functionality of the backend but are useful when building a website that can store important data.</p>
 <h2 id="save">Save()</h2>
+	   <br>
 <pre><code>Save(Name, Value)
 </code></pre>
 <p>The Save function belongs to the backend and is used to retain vital information across server starts/stops.</p>
@@ -212,6 +219,7 @@ Save("users", userArray)
 <p>⚠️ <strong>This data is saved using localStorage</strong>: It is very important to not clear the cache of EasyJS’ website if there is important information being saved.</p>
 </blockquote>
 <h2 id="get">Get()</h2>
+	   <br>
 <pre><code>Get(Name, DefaultType)
 </code></pre>
 <p>The Get function belongs to the backend and is used to retain vital information across server starts/stops.</p>
@@ -239,11 +247,14 @@ userArray.push("joey");
 Save("users", userArray);
 </code></pre>
 <h1 id="using-the-editor">Using the Editor</h1>
+	   <br>
 <p>The EasyJS editor is an in-browser component that must be running in order for the backend to function. It is opened by clicking <strong>EDIT</strong> on a backend in the My Sites page.</p>
 <h2 id="left-side-backend-code">Left Side (Backend Code)</h2>
+	   <br>
 <p>The left side of the editor contains the code for your backend. It is where you will define all of your Respond() functions and any setup/teardown that may be required. Because it is already on the EasyJS website, there is no need to link the library.</p>
 <p>There is a <strong>Save</strong> button on the navbar above the editor to save your backend across sessions.</p>
 <h2 id="right-side-runtime">Right Side (Runtime)</h2>
+	   <br>
 <p>The right side of the editor contains the start button and the console. Once the start button is pressed, the console will begin reading outputs from the server state. Once up and running, the console will also display each Ask query (<strong>bolded</strong>) and Respond answer (regular) along with a timestamp. To end the backend at any time, press the stop button and close the editor.</p>
 <blockquote>
 <p><strong><em>NOTE:</em></strong>  Your website will be unable to perform backend calls while the backend is stopped. This can make functionalities like updates and logins unavailable. It is important to have a way for users to know that the backend is not available.</p>
