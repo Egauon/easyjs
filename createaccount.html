@@ -15,7 +15,12 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Source+Code+Pro:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
 <script src="./lib/script.js"></script>
-
+<script>
+if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
+  // true for mobile device
+  window.location.href = window.location.href.split(".html")[0] + "mobile.html"
+}
+</script>
 
 <nav class="navbar navbar-dark bg-dark navbar-expand-lg sticky-top" style="z-index:10000;">
   <div class="container-fluid">
