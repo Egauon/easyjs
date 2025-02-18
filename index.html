@@ -109,7 +109,7 @@ if(username){
 <div id="copyd" class="container scriptbutton" style="width:50%;background:white;box-shadow:10px 10px 0px rgba(0,0,0,.4); border:solid;border-width:5px;border-radius:20px;overflow:hidden;margin-top:30%;" onclick="copyToClipboard()" data-bs-container="body" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="Copied">
   
   <div class="row antirow">
-    <div class="" style="font-size:3vmin;padding:2%;">
+    <div class="col-11" style="font-size:3vmin;padding:2%;">
        <input type="text" id="textToCopy" value="<script src='https://egauon.github.io/easyjs/lib/script.js'></script>" style="border:none;width:100%;" readonly>
     </div>
     <div class="col-1" style="background:rgb(150,150,150);padding:1%;">
@@ -126,7 +126,26 @@ if(username){
 </div>
 
 
+<style>
+#copyd {
+    width: 90%; /* More adaptable on mobile */
+    max-width: 400px; /* Prevents it from being too wide */
+    background: white;
+    box-shadow: 10px 10px 0px rgba(0,0,0,.4);
+    border: solid 5px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin: 5% auto; /* Centers without excessive spacing */
+}
 
+@media (min-width: 768px) {
+    #copyd {
+        width: 50%;
+        margin-top: 5%;
+    }
+}
+
+</style>
 
 
 <!-- <div id="loginscreen" style="position:absolute;top:0%;left:100%;width:100%;height:100%;align-content:center;transition: ease 1s;">
