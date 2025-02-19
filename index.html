@@ -89,7 +89,9 @@ if(username){
 
 if(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)){
   // true for mobile device
-  document.getElementById("copyd").style = "background:white;box-shadow:10px 10px 0px rgba(0,0,0,.4); border:solid;border-width:5px;border-radius:20px;overflow:hidden;";
+  document.getElementById("copyd").remove()
+}else{
+	 document.getElementById("copyd").remove()
 }
 </script>
 
